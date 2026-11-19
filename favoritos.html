@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Veja sua coleção de Pokémon favoritos e compare os atributos.">
+  <title>Favoritos — PokéColeção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body data-page="favorites">
+  <!-- Requisito 1: cabeçalho idêntico às outras páginas e contador persistente no link de favoritos. -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="Pokébola"><circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/><path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/><path d="M5 24h38" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/></svg>
+        <span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a><a href="galeria.html">Galeria</a><a class="favorites-nav" href="favoritos.html">Favoritos <span class="favorite-count" aria-label="0 Pokémon favoritos">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-wrap page-main">
+    <section class="page-heading">
+      <p class="eyebrow">Sua coleção pessoal</p>
+      <h1>Meus <span>favoritos</span></h1>
+      <p>Seus Pokémon escolhidos, reunidos em um só lugar.</p>
+    </section>
+
+    <!-- Requisito 5: resumo estilo carrinho com médias de peso, altura e HP e lista de tipos. -->
+    <section class="collection-summary" aria-labelledby="summary-title">
+      <div class="summary-title"><span class="summary-icon"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i></span><div><h2 id="summary-title">Resumo da coleção</h2><p id="summary-count">0 Pokémon na sua coleção</p></div></div>
+      <div class="summary-stats">
+        <div class="summary-stat"><span>Peso médio</span><strong id="average-weight">—</strong></div>
+        <div class="summary-stat"><span>Altura média</span><strong id="average-height">—</strong></div>
+        <div class="summary-stat"><span>HP médio</span><strong id="average-hp">—</strong></div>
+      </div>
+      <div class="summary-types"><h3>Tipos na coleção</h3><ul id="collection-types" aria-label="Tipos dos Pokémon favoritos"><li class="muted">Adicione favoritos para ver os tipos.</li></ul></div>
+    </section>
+
+    <!-- Requisito 5: coleção persistente em localStorage, cards em colunas e botão de remoção. -->
+    <section class="results-section favorites-results" aria-labelledby="collection-title">
+      <div class="results-heading"><h2 id="collection-title">Sua coleção</h2><a class="text-link" href="galeria.html">Adicionar Pokémon <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+      <p id="favorites-status" class="status-message" role="status" aria-live="polite"></p>
+      <div id="favorites-grid" class="pokemon-grid"></div>
+      <div id="favorites-empty" class="empty-state" hidden>
+        <span class="empty-icon"><i class="fa-regular fa-heart" aria-hidden="true"></i></span>
+        <h3>Sua coleção está esperando!</h3>
+        <p>Explore a galeria e salve os Pokémon que mais gostar.</p>
+        <a class="button button-primary" href="galeria.html">Ir para a galeria <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Requisito 1: mesmo footer com redes sociais e data dinâmica em todas as páginas. -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/><path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/><path d="M5 24h38" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/></svg><span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <p class="footer-date">Hoje é <time id="current-date"></time></p>
+      <div class="social-links" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/pokemon/" aria-label="Pokémon no Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><a href="https://www.facebook.com/Pokemon/" aria-label="Pokémon no Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a><a href="https://www.youtube.com/user/Pokemon" aria-label="Pokémon no YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+      </div>
+      <p class="copyright">© <span class="current-year"></span> PokéColeção. Projeto de fã, sem vínculo oficial com a Pokémon Company.</p>
+    </div>
+  </footer>
+</body>
+</html>

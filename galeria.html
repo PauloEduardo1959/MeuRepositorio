@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Pesquise Pokémon por nome ou tipo e adicione seus favoritos à coleção.">
+  <title>Galeria — PokéColeção</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body data-page="gallery">
+  <!-- Requisito 1: mesmo cabeçalho, logo SVG e navegação da página inicial. -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="Pokébola">
+          <circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/>
+          <path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/><path d="M5 24h38" stroke="currentColor" stroke-width="4"/>
+          <circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/>
+        </svg><span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="galeria.html">Galeria</a>
+        <a class="favorites-nav" href="favoritos.html">Favoritos <span class="favorite-count" aria-label="0 Pokémon favoritos">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-wrap page-main">
+    <section class="page-heading">
+      <p class="eyebrow">A Pokédex espera por você</p>
+      <h1>Galeria de <span>Pokémon</span></h1>
+      <p>Encontre por nome ou tipo e adicione à sua coleção.</p>
+    </section>
+
+    <!-- Requisito 3: busca informa os termos aceitos e usa a listagem completa da API. -->
+    <section class="search-panel" aria-label="Busca de Pokémon">
+      <label for="pokemon-search">Busque por tipo de Pokémon ou pelo nome de um Pokémon específico</label>
+      <div class="search-control">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input id="pokemon-search" type="text" role="searchbox" placeholder="Ex.: água, fogo ou Pikachu" autocomplete="off" aria-controls="pokemon-grid">
+        <button id="clear-search" class="clear-search" type="button" aria-label="Limpar busca" hidden><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <p id="gallery-status" class="status-message" role="status" aria-live="polite">Carregando a Pokédex…</p>
+    </section>
+
+    <!-- Requisito 3: tabela ilustrativa apresenta tipos e exemplos clicáveis para auxiliar a busca. -->
+    <section class="type-guide" aria-labelledby="type-guide-title">
+      <div class="type-guide-heading">
+        <div><p class="eyebrow">Guia rápido</p><h2 id="type-guide-title">Explore por tipo</h2></div>
+        <p>Selecione um tipo para ver os Pokémon correspondentes.</p>
+      </div>
+      <div class="type-table-wrap">
+        <table class="type-table">
+          <thead><tr><th scope="col">Tipo</th><th scope="col">Alguns exemplos</th><th scope="col"><span class="visually-hidden">Buscar tipo</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><span class="type-pill type-normal">Normal</span></th><td>Meowth, Eevee</td><td><button class="type-search" type="button" data-type="normal" aria-label="Buscar Pokémon do tipo Normal">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-fire">Fogo</span></th><td>Charmander, Vulpix</td><td><button class="type-search" type="button" data-type="fire" aria-label="Buscar Pokémon do tipo Fogo">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-water">Água</span></th><td>Squirtle, Psyduck</td><td><button class="type-search" type="button" data-type="water" aria-label="Buscar Pokémon do tipo Água">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-electric">Elétrico</span></th><td>Pikachu, Magnemite</td><td><button class="type-search" type="button" data-type="electric" aria-label="Buscar Pokémon do tipo Elétrico">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-grass">Planta</span></th><td>Bulbasaur, Oddish</td><td><button class="type-search" type="button" data-type="grass" aria-label="Buscar Pokémon do tipo Planta">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-ice">Gelo</span></th><td>Lapras, Sneasel</td><td><button class="type-search" type="button" data-type="ice" aria-label="Buscar Pokémon do tipo Gelo">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-fighting">Lutador</span></th><td>Machop, Mankey</td><td><button class="type-search" type="button" data-type="fighting" aria-label="Buscar Pokémon do tipo Lutador">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-poison">Veneno</span></th><td>Ekans, Koffing</td><td><button class="type-search" type="button" data-type="poison" aria-label="Buscar Pokémon do tipo Veneno">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-ground">Terrestre</span></th><td>Sandshrew, Diglett</td><td><button class="type-search" type="button" data-type="ground" aria-label="Buscar Pokémon do tipo Terrestre">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-flying">Voador</span></th><td>Pidgey, Zubat</td><td><button class="type-search" type="button" data-type="flying" aria-label="Buscar Pokémon do tipo Voador">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-psychic">Psíquico</span></th><td>Abra, Slowpoke</td><td><button class="type-search" type="button" data-type="psychic" aria-label="Buscar Pokémon do tipo Psíquico">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-bug">Inseto</span></th><td>Caterpie, Scyther</td><td><button class="type-search" type="button" data-type="bug" aria-label="Buscar Pokémon do tipo Inseto">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-rock">Pedra</span></th><td>Geodude, Onix</td><td><button class="type-search" type="button" data-type="rock" aria-label="Buscar Pokémon do tipo Pedra">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-ghost">Fantasma</span></th><td>Gastly, Gengar</td><td><button class="type-search" type="button" data-type="ghost" aria-label="Buscar Pokémon do tipo Fantasma">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-dragon">Dragão</span></th><td>Dratini, Dragonite</td><td><button class="type-search" type="button" data-type="dragon" aria-label="Buscar Pokémon do tipo Dragão">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-dark">Sombrio</span></th><td>Umbreon, Murkrow</td><td><button class="type-search" type="button" data-type="dark" aria-label="Buscar Pokémon do tipo Sombrio">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-steel">Aço</span></th><td>Magnemite, Steelix</td><td><button class="type-search" type="button" data-type="steel" aria-label="Buscar Pokémon do tipo Aço">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+            <tr><th scope="row"><span class="type-pill type-fairy">Fada</span></th><td>Clefairy, Jigglypuff</td><td><button class="type-search" type="button" data-type="fairy" aria-label="Buscar Pokémon do tipo Fada">Buscar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Requisito 4: cards preenchidos sob demanda e grid responsivo com lista completa limit=0. -->
+    <section class="results-section" aria-labelledby="results-title">
+      <div class="results-heading"><h2 id="results-title">Todos os Pokémon</h2><span id="results-count" class="results-count"></span></div>
+      <div id="pokemon-grid" class="pokemon-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Requisito 1: mesmo footer, links de redes sociais e data gerada por JavaScript. -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/><path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/><path d="M5 24h38" stroke="currentColor" stroke-width="4"/><circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/></svg><span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <p class="footer-date">Hoje é <time id="current-date"></time></p>
+      <div class="social-links" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/pokemon/" aria-label="Pokémon no Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><a href="https://www.facebook.com/Pokemon/" aria-label="Pokémon no Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a><a href="https://www.youtube.com/user/Pokemon" aria-label="Pokémon no YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+      </div>
+      <p class="copyright">© <span class="current-year"></span> PokéColeção. Projeto de fã, sem vínculo oficial com a Pokémon Company.</p>
+    </div>
+  </footer>
+</body>
+</html>

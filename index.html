@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Explore a Pokédex, descubra Pokémon e monte sua coleção de favoritos.">
+  <title>PokéColeção — Descubra seu próximo favorito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body data-page="index">
+  <!-- Requisito 1: cabeçalho compartilhado, logo SVG e navegação com página atual destacada por JS. -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" role="img" aria-label="Pokébola">
+          <circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/>
+          <path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/>
+          <path d="M5 24h38" stroke="currentColor" stroke-width="4"/>
+          <circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/>
+        </svg>
+        <span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="galeria.html">Galeria</a>
+        <a class="favorites-nav" href="favoritos.html">Favoritos <span class="favorite-count" aria-label="0 Pokémon favoritos">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Requisito 2: hero com imagem local, texto descritivo e CTA para a galeria. -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Sua aventura começa aqui</p>
+          <h1>Encontre seu próximo <span>Pokémon favorito.</span></h1>
+          <p class="hero-description">Explore centenas de Pokémon, descubra seus tipos e monte uma coleção que é só sua.</p>
+          <a class="button button-primary" href="galeria.html">Explorar a galeria <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <p class="hero-note"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Sua coleção fica salva neste dispositivo</p>
+        </div>
+        <div class="hero-art">
+          <img src="assets/hero-pokemon.svg" width="620" height="520" fetchpriority="high" decoding="async" alt="Ilustração de uma Pokébola cercada por formas coloridas">
+          <span class="hero-sticker sticker-top">✦ Descubra</span>
+          <span class="hero-sticker sticker-bottom"><i class="fa-solid fa-heart" aria-hidden="true"></i> Colecione</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Requisito 2: segunda seção explica a galeria e a coleção no estilo carrinho. -->
+    <section class="intro-section content-wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Muito mais que uma Pokédex</p>
+        <h2>Descobrir é só o começo.</h2>
+        <p>Encontre Pokémon na galeria e guarde os que mais gostar nos seus favoritos.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon icon-yellow"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+          <h3>Explore a galeria</h3>
+          <p>Pesquise pelo nome ou pelo tipo e conheça os detalhes de cada Pokémon.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon icon-pink"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+          <h3>Monte sua coleção</h3>
+          <p>Adicione favoritos como em um carrinho de compras e encontre tudo reunido em um só lugar.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon icon-blue"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></span>
+          <h3>Compare detalhes</h3>
+          <p>Veja tipo, HP, peso e altura para conhecer melhor os escolhidos.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Requisito 1: footer compartilhado, redes sociais em Font Awesome e data dinâmica por JS. -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a class="brand footer-brand" href="index.html" aria-label="PokéColeção, página inicial">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" fill="#fff" stroke="currentColor" stroke-width="4"/>
+          <path d="M5 24h38a19 19 0 0 0-38 0Z" fill="#ef5350"/><path d="M5 24h38" stroke="currentColor" stroke-width="4"/>
+          <circle cx="24" cy="24" r="7" fill="#fff" stroke="currentColor" stroke-width="4"/>
+        </svg><span>poké<span class="brand-accent">coleção</span></span>
+      </a>
+      <p class="footer-date">Hoje é <time id="current-date"></time></p>
+      <div class="social-links" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/pokemon/" aria-label="Pokémon no Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/Pokemon/" aria-label="Pokémon no Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/user/Pokemon" aria-label="Pokémon no YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+      </div>
+      <p class="copyright">© <span class="current-year"></span> PokéColeção. Projeto de fã, sem vínculo oficial com a Pokémon Company.</p>
+    </div>
+  </footer>
+</body>
+</html>
